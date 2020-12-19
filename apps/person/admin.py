@@ -19,6 +19,6 @@ class EmployeeAdmin(admin.ModelAdmin):
     def full_name(self, obj):
         return obj.first_name + ' ' + obj.last_name
 
-    search_fields = ('first_name', )
-    list_filter = ('job', 'skill')
-    filter_horizontal = ('skill', )
+    search_fields = ('first_name',)
+    list_filter = ('department', 'job', 'skill')
+    filter_horizontal = ('skill',)

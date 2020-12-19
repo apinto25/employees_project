@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
-
-def person_test(self):
-    print("-------------test-------------")
-
+from apps.person import views
 
 urlpatterns = [
-    path('person/', person_test),
+    path('list-employees/', views.ListAllEmployees.as_view()),
+    path('list-by-area/<short_name>', views.ListEmployeesByArea.as_view()),
 ]
