@@ -1,0 +1,12 @@
+<h1>Search Employees by Keyword</h1>
+<form method="GET">{% csrf_token %}
+    <input type "text" id="kword" name="kword" placeholder="Name">
+    <button type="submit">Search</button>
+</form>
+
+<h3>Results</h3>
+<ul>
+    {% for employee in employees%}
+        <li>{{employee}}</li>
+    {% endfor %}
+<ul>

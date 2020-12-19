@@ -21,3 +21,16 @@ class ListEmployeesByArea(ListView):
             department__name=area
         )
         return queryset
+
+
+class ListEmployeesByKword(ListView):
+    """List employees by keyword from html template."""
+    template_name = 'person/list_by_kword.html'
+    context_object_name = 'employees'
+
+    def get_queryset(self):
+        keyword = self.request.GET.get("kword",)
+        queryset = Employee.objects.filter(
+            first_name = keyword
+        )
+        return queryset
