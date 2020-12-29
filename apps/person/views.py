@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import (
+    ListView,
+    DetailView,
+)
 
 from apps.person.models import Employee
 
@@ -36,3 +39,28 @@ class ListEmployeesByKword(ListView):
             first_name = keyword
         )
         return queryset
+
+
+class ListEmployeeSkills(ListView):
+    """List skills by employee from html template."""
+    template_name = "person/list_skills.html"
+    context_object_name = "skills"
+
+    def get_queryset(self):
+        employee_id = self.kwargs["pk"]
+        if Employee.objects.filter(id=employee_id).exists():
+            employee = Employee.objects.get(id=employee_id)
+            return employee.skill.all()
+        else:
+            return []
+
+
+class EmployeeDetailView(DetailView):
+    """Detail view of employee model from html template."""
+    model = Employee
+    template_name = "person/detail_employee.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(EmployeeDetailView, self).get_context_data(**kwargs)
+        context["title"] = "Employee of the month" 
+        return context
