@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
+    TemplateView,
 )
 
 from apps.person.models import Employee
@@ -67,8 +69,25 @@ class EmployeeDetailView(DetailView):
         return context
 
 
+class SuccessView(TemplateView):
+    template_name = "person/success.html"
+
+
 class EmployeeCreateView(CreateView):
     template_name = "person/add_employee.html"
     model = Employee
-    fields = ("__all__")
-    success_url = "."
+    fields = [
+        "first_name",
+        "last_name",
+        "job",
+        "department",
+        "skill",
+        "resume"
+    ]
+    success_url = reverse_lazy("person_app:success")
+
+    def form_valid(self, form):
+        employee = form.save()
+        employee.full_name = employee.first_name * " " + employee.last_name
+        employee.save()
+        return super(EmployeeCreateView, self).form_valid(form)
