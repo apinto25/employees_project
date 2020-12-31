@@ -5,6 +5,7 @@ from django.views.generic import (
     DetailView,
     CreateView,
     TemplateView,
+    UpdateView,
 )
 
 from apps.person.models import Employee
@@ -91,3 +92,24 @@ class EmployeeCreateView(CreateView):
         employee.full_name = employee.first_name * " " + employee.last_name
         employee.save()
         return super(EmployeeCreateView, self).form_valid(form)
+
+
+class EmployeeUpdateView(UpdateView):
+    model = Employee
+    template_name = "person/update.html"
+    fields = [
+        "first_name",
+        "last_name",
+        "job",
+        "department",
+        "skill",
+        "resume"
+    ]
+    success_url = reverse_lazy("person_app:success")
+
+    def post(self, request ,*args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request ,*args, **kwargs)
+
+    def form_valid(self, form):
+        return super(EmployeeUpdateView, self).form_valid(form)
