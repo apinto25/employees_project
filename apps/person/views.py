@@ -6,6 +6,7 @@ from django.views.generic import (
     CreateView,
     TemplateView,
     UpdateView,
+    DeleteView,
 )
 
 from apps.person.models import Employee
@@ -113,3 +114,10 @@ class EmployeeUpdateView(UpdateView):
 
     def form_valid(self, form):
         return super(EmployeeUpdateView, self).form_valid(form)
+
+
+class EmployeeDeleteView(DeleteView):
+    model = Employee
+    template_name = "person/delete.html"
+    success_url = reverse_lazy("person_app:success")
+
