@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, CreateView
 
 from .models import HomeTestModel
+from .forms import TestForm
 
 
 class GenericTestView(TemplateView):
@@ -23,4 +24,5 @@ class ListTest2ListView(ListView):
 class CreateViewTestView(CreateView):
     template_name = 'home/add.html'
     model = HomeTestModel
-    fields = ['title', 'subtitle', 'quantity']
+    form_class = TestForm
+    success_url = "/"
