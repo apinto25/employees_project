@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
-
-def department_test(self):
-    print("-------------test-------------")
+from . import views
 
 
 urlpatterns = [
-    path('department/', department_test),
+    path('new-department/', views.RegisterNewDepartmentView.as_view(), name="new_department"),
 ]
