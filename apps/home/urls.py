@@ -9,4 +9,9 @@ urlpatterns = [
     path('list/', views.ListTestListView.as_view()),
     path('list-test/', views.ListTest2ListView.as_view()),
     path('add/', views.CreateViewTestView.as_view(), name="test_add"),
+    path(
+        'resume-foundation/',
+        views.ResumeFoundationView.as_view(),
+        name="foundation"
+    ),
 ]

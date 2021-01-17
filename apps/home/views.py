@@ -9,6 +9,10 @@ class GenericTestView(TemplateView):
     template_name = 'home/home_test.html'
 
 
+class ResumeFoundationView(TemplateView):
+    template_name = 'home/resume_foundation.html'
+
+
 class ListTestListView(ListView):
     template_name = 'home/list.html'
     context_object_name = 'list_numbers'
