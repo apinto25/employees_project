@@ -12,6 +12,11 @@ from django.views.generic import (
 from apps.person.models import Employee
 
 
+class HomeView(TemplateView):
+    """ Loads home template."""
+    template_name = "home.html"
+
+
 class ListAllEmployees(ListView):
     """List all employees of the company."""
     template_name = "person/list_all.html"

@@ -8,6 +8,7 @@ app_name = "person_app"
 
 
 urlpatterns = [
+    path('', views.HomeView.as_view(), name="home"),
     path('list-employees/', views.ListAllEmployees.as_view()),
     path('list-by-area/<short_name>/', views.ListEmployeesByArea.as_view()),
     path('search-employee/', views.ListEmployeesByKword.as_view()),
