@@ -1,8 +1,75 @@
-<h1>List of all Employees</h1>
+{% extends 'base.html' %}
 
-<ul>
-    {% for employee in object_list%}
-        <li>{{employee}}</li>
-    {% endfor %}
-<ul>
+{% block content %}
 
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="=grid-x">
+        <h1 class="cell">List Employees</h1>
+        <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
+            <div class="cell large-7">
+                <input type="text" id="kword" name="kword" placeholder="Employee name">
+            </div>
+            <div class="cell large-2">
+                <button type="submit" class="success button">Search</button>
+            </div>
+        </form>
+
+        <div class="cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="100">ID</th>
+                        <th width="100">Name</th>
+                        <th width="150">Last Name</th>
+                        <th>Department</th>
+                        <th width="200">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in object_list%}
+                    <tr>
+                        <td>{{employee.id}}</td>
+                        <td>{{employee.first_name}}</td>
+                        <td>{{employee.last_name}}</td>
+                        <td>{{employee.department}}</td>
+                        <td><a class="button warning" href="{% url 'person_app:employee_details' employee.id %}">Go to
+                                employee</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="cell">
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="pagination-previous">
+                        <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% for actual_page in paginator.page_range %}
+                    
+                    {% ifequal actual_page page_obj.number  %} 
+                    <li class="current">{{ actual_page }}</li>
+                    {% else %}
+                    <li><a href="?page={{actual_page}}">{{ actual_page }}</a></li>
+                    {% endifequal %}
+                        
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

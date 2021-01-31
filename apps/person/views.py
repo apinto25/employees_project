@@ -20,9 +20,15 @@ class HomeView(TemplateView):
 class ListAllEmployees(ListView):
     """List all employees of the company."""
     template_name = "person/list_all.html"
-    paginate_by = 10
+    paginate_by = 5
     ordering = "first_name"
-    model = Employee
+
+    def get_queryset(self):
+        keyword = self.request.GET.get("kword", "")
+        queryset = Employee.objects.filter(
+            full_name__icontains=keyword,
+        )
+        return queryset
 
 
 class ListEmployeesByArea(ListView):
@@ -95,7 +101,7 @@ class EmployeeCreateView(CreateView):
 
     def form_valid(self, form):
         employee = form.save()
-        employee.full_name = employee.first_name * " " + employee.last_name
+        employee.full_name = employee.first_name + " " + employee.last_name
         employee.save()
         return super(EmployeeCreateView, self).form_valid(form)
 
