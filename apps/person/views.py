@@ -125,9 +125,8 @@ class EmployeeUpdateView(UpdateView):
         "job",
         "department",
         "skill",
-        "resume"
     ]
-    success_url = reverse_lazy("person_app:success")
+    success_url = reverse_lazy("person_app:all_employees_admin")
 
     def post(self, request ,*args, **kwargs):
         self.object = self.get_object()
