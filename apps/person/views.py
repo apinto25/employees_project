@@ -20,7 +20,7 @@ class HomeView(TemplateView):
 class ListAllEmployees(ListView):
     """List all employees of the company."""
     template_name = "person/list_all.html"
-    paginate_by = 5
+    paginate_by = 10
     ordering = "first_name"
 
     def get_queryset(self):
@@ -31,10 +31,18 @@ class ListAllEmployees(ListView):
         return queryset
 
 
+class ListEmployeesAdmin(ListView):
+    """List all employees of the company."""
+    template_name = "person/list_all_admin.html"
+    paginate_by = 10
+    ordering = "id"
+    model = Employee
+
+
 class ListEmployeesByArea(ListView):
     """List all Employees from an area of the company."""
     template_name = "person/list_by_area.html"
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = "employees"
 
     def get_queryset(self):

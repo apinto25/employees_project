@@ -15,6 +15,11 @@ urlpatterns = [
         name="all_employees"
     ),
     path(
+        "list-employees-admin/",
+        views.ListEmployeesAdmin.as_view(), 
+        name="all_employees_admin"
+    ),
+    path(
         "list-by-area/<short_name>/",
         views.ListEmployeesByArea.as_view(),
         name="dept_employees"
@@ -28,8 +33,14 @@ urlpatterns = [
     ),
     path("add-employee/", views.EmployeeCreateView.as_view()),
     path("success/", views.SuccessView.as_view(), name="success"),
-    path("update-employee/<pk>/", views.EmployeeUpdateView.as_view(),
-         name="update_employee"),
-    path("delete-employee/<pk>/", views.EmployeeDeleteView.as_view(),
-        name="delete_employee"),
+    path(
+        "update-employee/<pk>/",
+        views.EmployeeUpdateView.as_view(),
+        name="update_employee"
+    ),
+    path(
+        "delete-employee/<pk>/",
+        views.EmployeeDeleteView.as_view(),
+        name="delete_employee"
+    ),
 ]
