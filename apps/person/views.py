@@ -105,7 +105,6 @@ class EmployeeCreateView(CreateView):
         "job",
         "department",
         "skill",
-        "resume",
         "avatar"
     ]
     success_url = reverse_lazy("person_app:all_employees_admin")
