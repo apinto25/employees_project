@@ -31,7 +31,11 @@ urlpatterns = [
         views.EmployeeDetailView.as_view(),
         name="employee_details"
     ),
-    path("add-employee/", views.EmployeeCreateView.as_view()),
+    path(
+        "add-employee/",
+        views.EmployeeCreateView.as_view(),
+        name="add_employee"
+    ),
     path("success/", views.SuccessView.as_view(), name="success"),
     path(
         "update-employee/<pk>/",

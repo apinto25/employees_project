@@ -1,4 +1,63 @@
-<h1>Register Employee</h1>
+{% extends 'base.html' %}
+
+
+{% block title %}
+Add Employee
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1>Register Employee</h1>
+        <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="cell medium-6">
+                <label>First name:
+                    {{ form.first_name }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Last name:
+                    {{ form.last_name }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Job:
+                    {{ form.job }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Department:
+                    {{ form.department }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Skills:
+                    {{ form.skill }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Resume:
+                    {{ form.resume }}
+                </label>
+            </div>
+            <div class="cell medium-6">
+                <label>Avatar:
+                    {{ form.avatar }}
+                </label>
+            </div>
+            <div class="cell">
+                <button type="submit" class="success button">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+
 
 <form method="POST">{% csrf_token %}
     {{ form.as_p }}

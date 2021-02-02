@@ -105,9 +105,10 @@ class EmployeeCreateView(CreateView):
         "job",
         "department",
         "skill",
-        "resume"
+        "resume",
+        "avatar"
     ]
-    success_url = reverse_lazy("person_app:success")
+    success_url = reverse_lazy("person_app:all_employees_admin")
 
     def form_valid(self, form):
         employee = form.save()
@@ -140,4 +141,3 @@ class EmployeeDeleteView(DeleteView):
     model = Employee
     template_name = "person/delete.html"
     success_url = reverse_lazy("person_app:all_employees_admin")
-
