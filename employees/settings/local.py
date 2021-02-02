@@ -4,7 +4,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "78026c2b4dd7.ngrok.io"]
+ALLOWED_HOSTS = ["localhost", "ddaff85d50fa.ngrok.io"]
 
 
 # Database
