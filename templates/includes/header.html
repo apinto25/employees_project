@@ -2,11 +2,10 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">Employees</li>
-        <li>
-          <a href="{% url 'person_app:all_employees' %}">List</a>
-        </li>
+        <li><a href="{% url 'person_app:all_employees' %}">List Employees</a></li>
+        <li><a href="{% url 'person_app:all_employees_admin' %}">Manage Employees</a></li>
         <li><a href="{% url 'department_app:list_department' %}">Departments</a></li>
-        <li><a href="{% url 'person_app:all_employees_admin' %}">Manage</a></li>
+        <li><a href="{% url 'department_app:new_department' %}">New Department</a></li>
       </ul>
     </div>
     <div class="top-bar-right">
